@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN gradle clean build --no-daemon
+RUN gradle clean bootWar -x test --no-daemon
 
 # ==========================
 # Stage 2: Ejecución
@@ -20,4 +20,4 @@ COPY --from=builder /app/build/libs/discografia-1.war app.war
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.war"]
+ENTRYPOINT ["java", "-jar", "app.war"]
